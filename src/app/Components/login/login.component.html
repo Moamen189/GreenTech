@@ -1,1 +1,40 @@
-<p>login works!</p>
+
+<section class="bg-main-light shadow p-2 my-2 rounded-4">
+  <h1 class="h2 text-main">
+    Login Now :
+  </h1>
+  <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+
+      <div class="my-2">
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" id="email" class="form-control">
+        @if(loginForm.get('email')?.errors && loginForm.get('email')?.touched){
+          <div class="alert alert-danger">
+            @if(loginForm.get('email')?.getError('required')){
+              <p>Email is Required</p>
+            }
+            @else if(loginForm.get('email')?.getError('email')){
+              <p>Email is not valid </p>
+            }
+          </div>
+        }
+      </div>
+
+        <div class="my-2">
+          <label for="password">Password</label>
+          <input formControlName="password" type="password" id="password" class="form-control">
+          @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched){
+            <div class="alert alert-danger">
+              @if(loginForm.get('password')?.getError('required')){
+                <p>Password is Required</p>
+              }
+              @else if(loginForm.get('password')?.getError('minlength')){
+                <p>Password is Shuold be more than 6 </p>
+              }
+            </div>
+          }
+      </div>
+
+      <button [disabled]="loginForm.invalid" class="btn-main ms-auto d-block">Login</button>
+  </form>
+</section>
