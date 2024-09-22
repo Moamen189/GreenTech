@@ -68,16 +68,12 @@
       <div class="my-2">
         <label for="rePassword">Re-Password</label>
         <input formControlName="rePassword" type="password" id="rePassword" class="form-control">
-        @if(registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched){
+        @if(registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched){
           <div class="alert alert-danger">
-            @if(registerForm.get('rePassword')?.getError('required')){
-              <p>Re-Password is Required</p>
-            }
-            @else if(registerForm.get('rePassword')?.getError('notMatch')){
-              <p>Password is not match </p>
-            }
+            <p>Passwords are not matched</p>
           </div>
         }
+
       </div>
       <button class="btn-main ms-auto d-block">Register</button>
   </form>
