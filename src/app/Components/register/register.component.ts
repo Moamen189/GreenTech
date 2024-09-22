@@ -19,7 +19,12 @@ export class RegisterComponent {
   } ,this.confirmPassword);
 
   registerSubmit():void{
+    if(this.registerForm.valid){
+
       console.log(this.registerForm);
+
+    }
+
   }
 
 
