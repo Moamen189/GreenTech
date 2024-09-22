@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../Core/Services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +12,10 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validator
 })
 export class RegisterComponent {
 
+  private readonly _authService = inject(AuthService);
+
+  msgError:string = '';
+  isLoad:boolean = false;
   registerForm:FormGroup = new FormGroup({
     name : new FormControl(null ,[Validators.required , Validators.minLength(3) , Validators.maxLength(20)]),
     email : new FormControl(null , [Validators.required , Validators.email]),
@@ -20,8 +26,18 @@ export class RegisterComponent {
 
   registerSubmit():void{
     if(this.registerForm.valid){
-
-      console.log(this.registerForm);
+        this.isLoad = true;
+      this._authService.setRegisterForm(this.registerForm.value).subscribe({
+        next:(res)=>{
+          console.log(res);
+          this.isLoad = false;
+        },
+        error:(err:HttpErrorResponse)=>{
+          this.msgError = err.error.message;
+          console.log(err);
+          this.isLoad = false;
+        }
+    })
 
     }
 

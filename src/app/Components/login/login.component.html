@@ -35,6 +35,17 @@
           }
       </div>
 
-      <button [disabled]="loginForm.invalid" class="btn-main ms-auto d-block">Login</button>
+      <button [disabled]="loginForm.invalid || isLoad" class="btn-main ms-auto d-block">Login
+
+        @if (isLoad) {
+
+          <i class="fa fa-spin fa-spinner"></i>
+        }
+      </button>
+
+      @if (msgError) {
+        <p class="alert alert-danger w-50 m-50">{{msgError}}</p>
+      }
+
   </form>
 </section>
