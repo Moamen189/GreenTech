@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModu
 import { AuthService } from '../../Core/Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ export class RegisterComponent {
 
   private readonly _authService = inject(AuthService);
   private readonly _formBuilder = inject(FormBuilder);
+  private readonly _Router = inject(Router);
 
   msgError:string = '';
   isLoad:boolean = false;
@@ -41,6 +43,12 @@ export class RegisterComponent {
       this._authService.setRegisterForm(this.registerForm.value).subscribe({
         next:(res)=>{
           console.log(res);
+          if(res.message === 'success'){
+            setTimeout(()=>{
+            this._Router.navigate(['/login']);
+
+            },2000);
+          }
           this.isLoad = false;
         },
         error:(err:HttpErrorResponse)=>{

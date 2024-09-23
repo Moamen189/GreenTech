@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { AuthService } from '../../Core/Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { NgClass } from '@angular/common';
 export class LoginComponent {
   private readonly _authService = inject(AuthService);
   private readonly _formBuilder = inject(FormBuilder);
+  private readonly _Router = inject(Router);
   msgError: string = '';
   isLoad: boolean = false;
 
@@ -33,7 +35,15 @@ export class LoginComponent {
         this.isLoad = true;
       this._authService.setLoginForm(this.loginForm.value).subscribe({
         next: (res) => {
+
           console.log(res);
+          if (res.message === 'success') {
+            setTimeout(() => {
+
+            this._Router.navigate(['/home']);
+
+            }, 2000);
+          }
           this.isLoad = false;
         },
         error: (err:HttpErrorResponse) => {
