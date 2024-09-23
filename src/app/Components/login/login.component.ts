@@ -40,6 +40,8 @@ export class LoginComponent {
           if (res.message === 'success') {
             setTimeout(() => {
 
+            localStorage.setItem('userToken',res.token);
+            this._authService.saveUserData();
             this._Router.navigate(['/home']);
 
             }, 2000);
