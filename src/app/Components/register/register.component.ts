@@ -50,6 +50,9 @@ export class RegisterComponent {
         }
     })
 
+    }else{
+      this.registerForm.setErrors({mismatch:true});
+      this.registerForm.markAllAsTouched();
     }
 
   }
