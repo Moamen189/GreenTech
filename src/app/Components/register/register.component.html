@@ -5,8 +5,11 @@
   <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
     <div class="my-2">
         <label for="name">Name</label>
-        <input  formControlName="name" type="text" id="name" class="form-control">
-        @if(registerForm.get('name')?.errors && registerForm.get('name')?.touched){
+        <input [ngClass]="{
+          'is-invalid': registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty),
+          'is-valid': registerForm.get('name')?.valid && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)
+        }"  formControlName="name" type="text" id="name" class="form-control">
+        @if(registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)){
           <div class="alert alert-danger">
             @if(registerForm.get('name')?.getError('required')){
               <p>Name is Required</p>
@@ -22,8 +25,11 @@
     </div>
       <div class="my-2">
         <label for="email">Email</label>
-        <input formControlName="email" type="email" id="email" class="form-control">
-        @if(registerForm.get('email')?.errors && registerForm.get('email')?.touched){
+        <input [ngClass]="{
+          'is-invalid': registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty),
+          'is-valid': registerForm.get('email')?.valid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
+        }" formControlName="email" type="email" id="email" class="form-control">
+        @if(registerForm.get('email')?.errors &&( registerForm.get('email')?.touched || registerForm.get('email')?.dirty)){
           <div class="alert alert-danger">
             @if(registerForm.get('email')?.getError('required')){
               <p>Email is Required</p>
@@ -36,8 +42,11 @@
       </div>
       <div class="my-2">
         <label for="phone">Phone</label>
-        <input formControlName="phone" type="tel" id="phone" class="form-control">
-        @if(registerForm.get('phone')?.errors && registerForm.get('phone')?.touched){
+        <input [ngClass]="{
+          'is-invalid': registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty),
+          'is-valid': registerForm.get('phone')?.valid && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty)
+        }" formControlName="phone" type="tel" id="phone" class="form-control">
+        @if(registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty )){
           <div class="alert alert-danger">
             @if(registerForm.get('phone')?.getError('required')){
               <p>Phone is Required</p>
@@ -50,8 +59,11 @@
     </div>
         <div class="my-2">
           <label for="password">Password</label>
-          <input formControlName="password" type="password" id="password" class="form-control">
-          @if(registerForm.get('password')?.errors && registerForm.get('password')?.touched){
+          <input [ngClass]="{
+            'is-invalid': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty),
+            'is-valid': registerForm.get('password')?.valid   && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)
+          }" formControlName="password" type="password" id="password" class="form-control">
+          @if(registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)){
             <div class="alert alert-danger">
               @if(registerForm.get('password')?.getError('required')){
                 <p>Password is Required</p>
@@ -67,8 +79,11 @@
       </div>
       <div class="my-2">
         <label for="rePassword">Re-Password</label>
-        <input formControlName="rePassword" type="password" id="rePassword" class="form-control">
-        @if(registerForm.getError('mismatch') && registerForm.get('rePassword')?.touched){
+        <input [ngClass]="{
+          'is-invalid': registerForm.get('rePassword')?.errors && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty),
+          'is-valid': registerForm.get('rePassword')?.valid && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)
+        }" formControlName="rePassword" type="password" id="rePassword" class="form-control">
+        @if(registerForm.getError('mismatch') && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty )){
           <div class="alert alert-danger">
             <p>Passwords are not matched</p>
           </div>
