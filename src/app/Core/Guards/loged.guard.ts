@@ -10,6 +10,7 @@ export const logedGuard: CanActivateFn = (route, state) => {
           _Router.navigate(['/home']);
           return false;
         }else{
+          _Router.navigate(['/login']);
 
             return true;
         }
