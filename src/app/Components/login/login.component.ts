@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../Core/Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
@@ -13,12 +13,18 @@ import { NgClass } from '@angular/common';
 })
 export class LoginComponent {
   private readonly _authService = inject(AuthService);
+  private readonly _formBuilder = inject(FormBuilder);
   msgError: string = '';
   isLoad: boolean = false;
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+
+  loginForm: FormGroup = this._formBuilder.group({
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, [Validators.required, Validators.minLength(6)]],
   });
+  // loginForm: FormGroup = new FormGroup({
+  //   email: new FormControl(null, [Validators.required, Validators.email]),
+  //   password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+  // });
 
 
 

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../Core/Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
@@ -14,16 +14,26 @@ import { NgClass } from '@angular/common';
 export class RegisterComponent {
 
   private readonly _authService = inject(AuthService);
+  private readonly _formBuilder = inject(FormBuilder);
 
   msgError:string = '';
   isLoad:boolean = false;
-  registerForm:FormGroup = new FormGroup({
-    name : new FormControl(null ,[Validators.required , Validators.minLength(3) , Validators.maxLength(20)]),
-    email : new FormControl(null , [Validators.required , Validators.email]),
-    password : new FormControl(null , [Validators.required , Validators.minLength(6)]),
-    rePassword : new FormControl(null),
-    phone : new FormControl(null , [Validators.required , Validators.minLength(11) , Validators.maxLength(11) , Validators.pattern(/^01[0125][0-9]{8}$/)]),
-  } ,this.confirmPassword);
+  registerForm:FormGroup = this._formBuilder.group({
+    name : [null ,[Validators.required , Validators.minLength(3) , Validators.maxLength(20)]],
+    email : [null , [Validators.required , Validators.email]],
+    password : [null , [Validators.required , Validators.minLength(6)]],
+    rePassword : [null],
+    phone : [null , [Validators.required , Validators.minLength(11) , Validators.maxLength(11) , Validators.pattern(/^01[0125][0-9]{8}$/)]],
+  } ,{validators:this.confirmPassword
+
+  });
+  // registerForm:FormGroup = new FormGroup({
+  //   name : new FormControl(null ,[Validators.required , Validators.minLength(3) , Validators.maxLength(20)]),
+  //   email : new FormControl(null , [Validators.required , Validators.email]),
+  //   password : new FormControl(null , [Validators.required , Validators.minLength(6)]),
+  //   rePassword : new FormControl(null),
+  //   phone : new FormControl(null , [Validators.required , Validators.minLength(11) , Validators.maxLength(11) , Validators.pattern(/^01[0125][0-9]{8}$/)]),
+  // } ,this.confirmPassword);
 
   registerSubmit():void{
     if(this.registerForm.valid){
