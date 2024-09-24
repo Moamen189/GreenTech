@@ -48,7 +48,7 @@
       @for (product of productList.slice(0,12); track product.id) {
         <div class="col-md-6">
           <div class="product p-2" >
-            <div routerLink="/details">
+            <div [routerLink]="['/details' , product.id]">
 
               <img [src]="product.imageCover" class="w-100" [alt]="product.title">
               <h3 class="small text-main">{{product.category.name}}</h3>

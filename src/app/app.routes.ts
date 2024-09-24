@@ -27,7 +27,7 @@ export const routes: Routes = [
     {path:'cart' , component:CartComponent},
     {path:'categories' , component:CategoriesComponent},
     {path:'brands' , component:BrandsComponent},
-    {path:'details' , component:DetailsComponent},
+    {path:'details/:id' , component:DetailsComponent},
   ]},
   {path:'**' , component:NotfoundComponent}
 ];
