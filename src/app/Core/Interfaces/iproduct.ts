@@ -25,7 +25,7 @@ interface ISubcategory {
     category: string;
 }
 
-interface ICategory {
+ interface ICategory {
     _id: string;
     name: string;
     slug: string;
