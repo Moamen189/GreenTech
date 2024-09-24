@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit  {
 
 private readonly _ActivatedRoute = inject(ActivatedRoute);
 private readonly _productService = inject(ProductsService);
-product:IProduct = {} as IProduct;
+product:IProduct | null = null;
 
   ngOnInit(): void {
     this._ActivatedRoute.paramMap.subscribe( {
