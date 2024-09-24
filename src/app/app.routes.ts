@@ -14,12 +14,12 @@ import { logedGuard } from './Core/Guards/loged.guard';
 
 export const routes: Routes = [
 
-  {path:'', component:AuthLayoutComponent , canActivate:[logedGuard] , children:[
+  {path:'', component:AuthLayoutComponent  , children:[
     {path:'' , redirectTo:'login' , pathMatch:'full'},
     {path:'login' , component:LoginComponent},
     {path:'register' , component:RegisterComponent},
   ]},
-  {path:'' , component:BlankLayoutComponent , canActivate:[authGuard], children:[
+  {path:'' , component:BlankLayoutComponent , children:[
     {path:'' , redirectTo:'home' , pathMatch:'full'},
     {path:'home' , component:HomeComponent},
     {path:'products' , component:ProductComponent},

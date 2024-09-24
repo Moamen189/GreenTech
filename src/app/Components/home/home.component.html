@@ -2,7 +2,7 @@
   <h2>Popular Products:</h2>
   <div class="row g-3">
       @for (product of productList.slice(0,12); track product.id) {
-        <div class="col-md-2">
+        <div class="col-md-6">
           <div class="product p-2">
               <img [src]="product.imageCover" [alt]="product.title">
               <h3 class="small">{{product.category.name}}</h3>
