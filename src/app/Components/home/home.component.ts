@@ -22,6 +22,20 @@ export class HomeComponent implements OnInit  , OnDestroy {
   categoryList:ICategory[] = [];
 
   getAllProduct !:Subscription
+  customMainOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: false,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: true,
+    dots: false,
+    navSpeed: 700,
+    navText: ['', ''],
+    items: 1,
+    nav: true
+  }
   customCategoryOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
