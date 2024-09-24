@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../Core/Services/products.service';
 import { IProduct } from '../../Core/Interfaces/iproduct';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -9,17 +10,19 @@ import { IProduct } from '../../Core/Interfaces/iproduct';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit  , OnDestroy {
 
   private readonly _productService = inject(ProductsService);
 
   productList:IProduct[] = [];
 
+  getAllProduct !:Subscription
+
 
   constructor() { }
 
   ngOnInit(): void {
-    this._productService.getAllProducts().subscribe({
+   this.getAllProduct= this._productService.getAllProducts().subscribe({
       next:(res)=>{
         this.productList = res.data;
         console.log(res.data);
@@ -29,5 +32,11 @@ export class HomeComponent implements OnInit  {
       }
     })
   }
+
+
+  ngOnDestroy(): void {
+    this.getAllProduct?.unsubscribe();
+  }
+
 
 }
