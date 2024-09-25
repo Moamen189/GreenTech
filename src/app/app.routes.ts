@@ -12,6 +12,7 @@ import { BrandsComponent } from './Components/brands/brands.component';
 import { authGuard } from './Core/Guards/auth.guard';
 import { logedGuard } from './Core/Guards/loged.guard';
 import { DetailsComponent } from './Components/details/details.component';
+import { ForgetPasswordComponent } from './Components/forget-password/forget-password.component';
 
 export const routes: Routes = [
 
@@ -28,6 +29,7 @@ export const routes: Routes = [
     {path:'categories' , component:CategoriesComponent},
     {path:'brands' , component:BrandsComponent},
     {path:'details/:id' , component:DetailsComponent},
+    {path:'forget' , component:ForgetPasswordComponent},
   ]},
   {path:'**' , component:NotfoundComponent}
 ];

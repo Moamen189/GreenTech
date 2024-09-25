@@ -41,13 +41,18 @@
           }
       </div>
 
-      <button  class="btn-main ms-auto d-block">Login
+      <div class="d-flex align-items-center justify-content-end gap-4">
+        <a  routerLink="/forget" class="link-primary">Forget Password ?</a>
 
-        @if (isLoad) {
+        <button type="submit"  class="btn-main">Login
 
-          <i class="fa fa-spin fa-spinner"></i>
-        }
-      </button>
+          @if (isLoad) {
+
+            <i class="fa fa-spin fa-spinner"></i>
+          }
+        </button>
+      </div>
+
 
       @if (msgError) {
         <p class="alert alert-danger w-50 m-50">{{msgError}}</p>
