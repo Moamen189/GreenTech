@@ -6,11 +6,12 @@ import { CategoriesService } from '../../Core/Services/categories.service';
 import { ICategory } from '../../Core/Interfaces/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
+import { CurrencyPipe, LowerCasePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule , RouterLink],
+  imports: [CarouselModule , RouterLink , UpperCasePipe , LowerCasePipe ,CurrencyPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

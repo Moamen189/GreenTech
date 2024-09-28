@@ -51,11 +51,11 @@
             <div [routerLink]="['/details' , product.id]">
 
               <img [src]="product.imageCover" class="w-100" [alt]="product.title">
-              <h3 class="small text-main">{{product.category.name}}</h3>
+              <h3 class="small text-main">{{product.category.name | uppercase}}</h3>
               <h4 class="h6">{{product.title.split(" " , 2).join(" ")}}</h4>
 
               <div class="d-flex justify-content-between align-items-center">
-                  <span>{{product.price}} EGP</span>
+                  <span>{{product.price | currency : 'EGP'}}</span>
 
                   <div>
 
@@ -85,5 +85,5 @@
       }
   </div>
 </section>
-``
+
 
