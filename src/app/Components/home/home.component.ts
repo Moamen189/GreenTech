@@ -7,11 +7,12 @@ import { ICategory } from '../../Core/Interfaces/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe, LowerCasePipe, UpperCasePipe } from '@angular/common';
+import { TermTextPipe } from '../../Core/Pipes/term-text.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule , RouterLink , UpperCasePipe , LowerCasePipe ,CurrencyPipe],
+  imports: [CarouselModule , RouterLink , UpperCasePipe , LowerCasePipe ,CurrencyPipe , TermTextPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
