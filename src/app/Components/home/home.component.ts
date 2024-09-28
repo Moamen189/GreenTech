@@ -8,11 +8,13 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { CurrencyPipe, LowerCasePipe, UpperCasePipe } from '@angular/common';
 import { TermTextPipe } from '../../Core/Pipes/term-text.pipe';
+import { FormsModule } from '@angular/forms';
+import { SearchPipe } from '../../Core/Pipes/search.pipe';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule , RouterLink , UpperCasePipe , LowerCasePipe ,CurrencyPipe , TermTextPipe],
+  imports: [CarouselModule , FormsModule , SearchPipe , RouterLink , UpperCasePipe , LowerCasePipe ,CurrencyPipe , TermTextPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -20,6 +22,8 @@ export class HomeComponent implements OnInit  , OnDestroy {
 
   private readonly _productService = inject(ProductsService);
   private readonly _categoryService = inject(CategoriesService);
+
+  text:string = "";
 
   productList:IProduct[] = [];
   categoryList:ICategory[] = [];
