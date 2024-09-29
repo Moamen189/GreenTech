@@ -14,6 +14,7 @@ import { logedGuard } from './Core/Guards/loged.guard';
 import { DetailsComponent } from './Components/details/details.component';
 import { ForgetPasswordComponent } from './Components/forget-password/forget-password.component';
 import { AllordersComponent } from './Components/allorders/allorders.component';
+import { OrdersComponent } from './Components/orders/orders.component';
 
 export const routes: Routes = [
 
@@ -32,6 +33,7 @@ export const routes: Routes = [
     {path:'details/:id' , component:DetailsComponent},
     {path:'forget' , component:ForgetPasswordComponent},
     {path:'allorders' , component:AllordersComponent},
+    {path:'orders/:id' , component:OrdersComponent},
   ]},
   {path:'**' , component:NotfoundComponent}
 ];
