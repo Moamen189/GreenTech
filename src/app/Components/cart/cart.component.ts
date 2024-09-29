@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CartService } from '../../Core/Services/cart.service';
 import { ICart } from '../../Core/Interfaces/icart';
 import { CurrencyPipe } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +14,7 @@ import { CurrencyPipe } from '@angular/common';
 export class CartComponent implements OnInit {
 
   private readonly _cartService = inject(CartService);
+  private readonly _toastrService = inject(ToastrService);
 
   cartDetails:ICart = {} as ICart;
 
@@ -47,6 +49,8 @@ export class CartComponent implements OnInit {
     this._cartService.updateProductQuantity(id,quantity).subscribe({
       next:(res)=>{
         this.cartDetails = res.data;
+        this._toastrService.success(res.message , 'Green-Tech');
+
         console.log(res)
       },
       error:(res)=>{
@@ -62,6 +66,8 @@ export class CartComponent implements OnInit {
       next:(res)=>{
       if(res.message === 'success'){
         this.cartDetails = {} as ICart;
+        this._toastrService.error(res.message , 'Green-Tech');
+
         console.log(res)
       }
       },

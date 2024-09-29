@@ -11,6 +11,7 @@ import { TermTextPipe } from '../../Core/Pipes/term-text.pipe';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../../Core/Pipes/search.pipe';
 import { CartService } from '../../Core/Services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit  , OnDestroy {
   private readonly _categoryService = inject(CategoriesService);
   private readonly _cartService = inject(CartService);
   private readonly _Router = inject(Router);
+  private readonly _toastrService = inject(ToastrService);
 
 
   text:string = "";
@@ -110,6 +112,7 @@ export class HomeComponent implements OnInit  , OnDestroy {
     this._cartService.addProductToCart(id).subscribe({
       next:(res)=>{
         this._Router.navigate(['/cart']);
+        this._toastrService.success(res.message , 'Green-Tech');
         console.log(res);
       },
       error:(err)=>{
