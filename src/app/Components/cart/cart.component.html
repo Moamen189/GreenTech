@@ -1,5 +1,11 @@
 <section class="bg-main-light rounded-4 shadow p-4 my-2 w-75 mx-auto">
-  <h1 class="h2 text-center">Shop Cart</h1>
+
+  <div class="d-flex align-items-center justify-content-between">
+
+    <h1 class="h2">Shop Cart</h1>
+    <button (click)="clearCart()" class="btn btn-outline-danger btn-sm">Clear Cart</button>
+  </div>
+
   <p class="text-main">Total Cart Price : {{cartDetails.totalCartPrice | currency : 'GBP'}}</p>
   @for (item of cartDetails.products; track item.product.id) {
     <div>

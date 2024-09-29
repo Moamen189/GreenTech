@@ -27,4 +27,8 @@ export class CartService {
   updateProductQuantity(id:string,quantity:number):Observable<any>{
     return this._httpClient.put(`${environment.baseUrl}/api/v1/cart/${id}`,{"count":quantity},{headers:this.myHeaders});
   }
+
+  clearCart():Observable<any>{
+    return this._httpClient.delete(`${environment.baseUrl}/api/v1/cart`,{headers:this.myHeaders});
+  }
 }

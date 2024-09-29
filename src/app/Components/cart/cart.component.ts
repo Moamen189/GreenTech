@@ -57,6 +57,21 @@ export class CartComponent implements OnInit {
 
 
 
+  clearCart():void{
+    this._cartService.clearCart().subscribe({
+      next:(res)=>{
+      if(res.message === 'success'){
+        this.cartDetails = {} as ICart;
+        console.log(res)
+      }
+      },
+      error:(res)=>{
+        console.log(res)
+      }
+    })
+  }
+
+
 
 
 }
