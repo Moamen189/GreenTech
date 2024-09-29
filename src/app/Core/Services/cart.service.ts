@@ -19,4 +19,8 @@ export class CartService {
   getCart():Observable<any>{
     return this._httpClient.get(`${environment.baseUrl}/api/v1/cart`,{headers:this.myHeaders});
   }
+
+  deleteSpecificationCart(id:string):Observable<any>{
+    return this._httpClient.delete(`${environment.baseUrl}/api/v1/cart/${id}`,{headers:this.myHeaders});
+  }
 }

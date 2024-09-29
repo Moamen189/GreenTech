@@ -30,6 +30,19 @@ export class CartComponent implements OnInit {
   }
 
 
+  removeItem(id:string):void {
+    this._cartService.deleteSpecificationCart(id).subscribe({
+      next:(res)=>{
+        this.cartDetails = res.data;
+        console.log(res)
+      },
+      error:(res)=>{
+        console.log(res)
+      }
+    })
+  }
+
+
 
 
 
