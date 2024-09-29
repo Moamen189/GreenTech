@@ -43,6 +43,19 @@ export class CartComponent implements OnInit {
   }
 
 
+  updateQuantity(id:string,quantity:number):void{
+    this._cartService.updateProductQuantity(id,quantity).subscribe({
+      next:(res)=>{
+        this.cartDetails = res.data;
+        console.log(res)
+      },
+      error:(res)=>{
+        console.log(res)
+      }
+    })
+  }
+
+
 
 
 

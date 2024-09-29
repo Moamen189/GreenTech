@@ -23,4 +23,8 @@ export class CartService {
   deleteSpecificationCart(id:string):Observable<any>{
     return this._httpClient.delete(`${environment.baseUrl}/api/v1/cart/${id}`,{headers:this.myHeaders});
   }
+
+  updateProductQuantity(id:string,quantity:number):Observable<any>{
+    return this._httpClient.put(`${environment.baseUrl}/api/v1/cart/${id}`,{"count":quantity},{headers:this.myHeaders});
+  }
 }
