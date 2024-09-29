@@ -19,4 +19,9 @@ export class OrdersService {
     },
     {headers:this.myHeaders});
   }
+
+
+  getUserOrders(id:string|null):Observable<any>{
+    return this._httpClient.get(`${environment.baseUrl}/api/v1/orders/user/${id}`);
+  }
 }
