@@ -5,11 +5,12 @@ import { Subscription } from 'rxjs';
 import { CategoriesService } from '../../Core/Services/categories.service';
 import { ICategory } from '../../Core/Interfaces/icategory';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CurrencyPipe, LowerCasePipe, UpperCasePipe } from '@angular/common';
 import { TermTextPipe } from '../../Core/Pipes/term-text.pipe';
 import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../../Core/Pipes/search.pipe';
+import { CartService } from '../../Core/Services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,9 @@ export class HomeComponent implements OnInit  , OnDestroy {
 
   private readonly _productService = inject(ProductsService);
   private readonly _categoryService = inject(CategoriesService);
+  private readonly _cartService = inject(CartService);
+  private readonly _Router = inject(Router);
+
 
   text:string = "";
 
@@ -82,7 +86,9 @@ export class HomeComponent implements OnInit  , OnDestroy {
       error:(err)=>{
         console.log(err);
       }
-    })
+    }),
+
+
    this.getAllProduct= this._productService.getAllProducts().subscribe({
       next:(res)=>{
         this.productList = res.data;
@@ -97,6 +103,19 @@ export class HomeComponent implements OnInit  , OnDestroy {
 
   ngOnDestroy(): void {
     this.getAllProduct?.unsubscribe();
+  }
+
+
+  addToCart(id:string):void{
+    this._cartService.addProductToCart(id).subscribe({
+      next:(res)=>{
+        this._Router.navigate(['/cart']);
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
   }
 
 
