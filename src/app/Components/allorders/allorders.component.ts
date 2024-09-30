@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersService } from '../../Core/Services/orders.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-allorders',
@@ -16,7 +17,9 @@ export class AllordersComponent implements OnInit  {
 
   private readonly _orderServices = inject(OrdersService);
 
-  userId:string | null ="" ;
+  userData:any = jwtDecode(localStorage.getItem('userToken') || '');
+
+  userId:any = this.userData.id;
   Order:any = null;
 
   ngOnInit(): void {
