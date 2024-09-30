@@ -10,6 +10,8 @@ export class CartService {
 
   constructor(private _httpClient:HttpClient) { }
 
+  cartNumber:number = 0;
+
   myHeaders:any = {token: localStorage.getItem('userToken')} ;
 
   addProductToCart(id:string):Observable<any>{
