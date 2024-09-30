@@ -8,10 +8,11 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { provideToastr } from 'ngx-toastr';
 import { headerInterceptor } from './Core/Interceptors/header.interceptor';
 import { errorsInterceptor } from './Core/Interceptors/errors.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes , withViewTransitions()),
     provideClientHydration() ,
     provideHttpClient(withFetch() , withInterceptors([headerInterceptor , errorsInterceptor])),
-    provideAnimations() , provideToastr()],
+    provideAnimations() , provideToastr() , importProvidersFrom(NgxSpinnerModule)],
 };

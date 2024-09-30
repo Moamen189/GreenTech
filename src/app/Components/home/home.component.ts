@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchPipe } from '../../Core/Pipes/search.pipe';
 import { CartService } from '../../Core/Services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit  , OnDestroy {
   private readonly _cartService = inject(CartService);
   private readonly _Router = inject(Router);
   private readonly _toastrService = inject(ToastrService);
+  private readonly _ngxSpinnerService = inject(NgxSpinnerService);
 
 
   text:string = "";
@@ -80,10 +82,12 @@ export class HomeComponent implements OnInit  , OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
+    this._ngxSpinnerService.show('S1');
     this._categoryService.getAllCategories().subscribe({
       next:(res)=>{
         this.categoryList = res.data;
         console.log(res.data);
+        this._ngxSpinnerService.hide('S1');
       },
       error:(err)=>{
         console.log(err);
