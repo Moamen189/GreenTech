@@ -16,8 +16,7 @@ export class OrdersService {
     return this._httpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${id}?url=https://localhost:4200`,
       {
       "shippingAddress":shippingDetails
-    },
-    {headers:this.myHeaders});
+    });
   }
 
 
