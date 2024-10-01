@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { ProductsService } from '../../Core/Services/products.service';
 import {  IProduct } from '../../Core/Interfaces/iproduct';
 import { Subscription } from 'rxjs';
@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit  , OnDestroy {
 
   text:string = "";
 
-  productList:IProduct[] = [];
-  categoryList:ICategory[] = [];
+  productList:WritableSignal<IProduct[]> = signal([]);
+  categoryList:WritableSignal<ICategory[]> = signal([]);
 
   getAllProduct !:Subscription
   customMainOptions: OwlOptions = {
@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit  , OnDestroy {
     this._ngxSpinnerService.show('S1');
     this._categoryService.getAllCategories().subscribe({
       next:(res)=>{
-        this.categoryList = res.data;
+        this.categoryList.set(res.data);
         console.log(res.data);
         this._ngxSpinnerService.hide('S1');
       },
@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit  , OnDestroy {
 
    this.getAllProduct= this._productService.getAllProducts().subscribe({
       next:(res)=>{
-        this.productList = res.data;
+        this.productList.set(res.data);
         console.log(res.data);
       },
       error:(err)=>{
