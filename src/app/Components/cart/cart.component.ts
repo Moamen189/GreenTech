@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
     this._cartService.deleteSpecificationCart(id).subscribe({
       next:(res)=>{
         this.cartDetails = res.data;
-        this._cartService.cartNumber.next(res.numOfCartItems);
+        this._cartService.cartNumber.set(res.numOfCartItems);
         console.log(res)
       },
       error:(res)=>{
@@ -52,7 +52,7 @@ export class CartComponent implements OnInit {
       next:(res)=>{
         this.cartDetails = res.data;
         this._toastrService.success(res.message , 'Green-Tech');
-        this._cartService.cartNumber.next(res.numOfCartItems);
+        this._cartService.cartNumber.set(res.numOfCartItems);
 
         console.log(res)
       },
@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
       if(res.message === 'success'){
         this.cartDetails = {} as ICart;
         this._toastrService.error(res.message , 'Green-Tech');
-        this._cartService.cartNumber.next(0);
+        this._cartService.cartNumber.set(0);
 
         console.log(res)
       }

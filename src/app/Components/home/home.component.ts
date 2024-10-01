@@ -117,8 +117,8 @@ export class HomeComponent implements OnInit  , OnDestroy {
       next:(res)=>{
         this._Router.navigate(['/cart']);
         this._toastrService.success(res.message , 'Green-Tech');
-        this._cartService.cartNumber.next( res.numOfCartItems) ;
-        console.log(res);
+        this._cartService.cartNumber.set( res.numOfCartItems) ;
+        console.log(this._cartService.cartNumber());
       },
       error:(err)=>{
         console.log(err);

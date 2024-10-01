@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -10,7 +10,7 @@ export class CartService {
 
   constructor(private _httpClient:HttpClient) { }
 
-  cartNumber:BehaviorSubject<number> = new BehaviorSubject<number>(0); //for Subscripe
+  cartNumber:WritableSignal<number> = signal(0)//for Subscripe
 
   myHeaders:any = {token: localStorage.getItem('userToken')} ;
 
