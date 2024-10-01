@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { effect, Injectable, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
 
@@ -8,9 +8,28 @@ import { environment } from '../environments/environment';
 })
 export class CartService {
 
-  constructor(private _httpClient:HttpClient) { }
-
   cartNumber:WritableSignal<number> = signal(0)//for Subscripe
+
+
+  constructor(private _httpClient:HttpClient) {
+
+
+
+    effect(()=>{
+
+        const cartData = this.cartNumber();
+
+        localStorage.setItem('cartItem',cartData.toString());
+
+
+    })
+  }
+
+
+
+
+
+
 
   myHeaders:any = {token: localStorage.getItem('userToken')} ;
 
