@@ -37,6 +37,7 @@ export class CartComponent implements OnInit {
     this._cartService.deleteSpecificationCart(id).subscribe({
       next:(res)=>{
         this.cartDetails = res.data;
+        this._cartService.cartNumber.next(res.numOfCartItems);
         console.log(res)
       },
       error:(res)=>{
