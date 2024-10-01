@@ -26,14 +26,14 @@ export const routes: Routes = [
   {path:'' , component:BlankLayoutComponent , children:[
     {path:'' , redirectTo:'home' , pathMatch:'full'},
     {path:'home' , component:HomeComponent},
-    {path:'products' , component:ProductComponent},
+    {path:'products' , loadComponent:(()=>import('./Components/product/product.component').then(m=>m.ProductComponent))},
     {path:'cart' , component:CartComponent},
-    {path:'categories' , component:CategoriesComponent},
+    {path:'categories' , loadComponent:(()=>import('./Components/categories/categories.component').then(m=>m.CategoriesComponent))},
     {path:'brands' , component:BrandsComponent},
     {path:'details/:id' , component:DetailsComponent},
-    {path:'forget' , component:ForgetPasswordComponent},
-    {path:'allorders' , component:AllordersComponent},
-    {path:'orders/:id' , component:OrdersComponent},
+    {path:'forget' , loadComponent:(()=>import('./Components/forget-password/forget-password.component').then(m=>m.ForgetPasswordComponent))},
+    {path:'allorders' , loadComponent:(()=>import('./Components/allorders/allorders.component').then(m=>m.AllordersComponent))},
+    {path:'orders/:id' , loadComponent:(()=>import('./Components/orders/orders.component').then(m=>m.OrdersComponent))},
   ]},
   {path:'**' , component:NotfoundComponent}
 ];
