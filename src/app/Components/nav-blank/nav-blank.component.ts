@@ -20,7 +20,14 @@ export class NavBlankComponent implements OnInit {
   navNumber:number = 0;
 
   ngOnInit(): void {
-    this.navNumber= this._cartService.cartNumber
+   // this.navNumber= this._cartService.cartNumber.getValue();
+
+   this._cartService.cartNumber.subscribe({
+    next: (data) => {
+      this.navNumber = data;
+    }
+
+   });
   }
 
   logOut():void{
