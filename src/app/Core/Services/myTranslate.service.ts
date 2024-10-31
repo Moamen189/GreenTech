@@ -1,11 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { inject, Inject, Injectable, PLATFORM_ID, RendererFactory2 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyTranslateService {
+  private readonly _render2 = inject(RendererFactory2).createRenderer(null , null);
 
   constructor(
     private _TranslateService:TranslateService ,
