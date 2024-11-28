@@ -12,20 +12,21 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { loadingInterceptor } from './Core/Interceptors/loading.interceptor';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { provideStore } from '@ngrx/store';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes , withViewTransitions()),
-    provideClientHydration() ,
-    provideHttpClient(withFetch() , withInterceptors([headerInterceptor , errorsInterceptor , loadingInterceptor])),
-    provideAnimations() , provideToastr() , importProvidersFrom(NgxSpinnerModule , TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }))],
+  providers: [provideRouter(routes, withViewTransitions()),
+    provideClientHydration(),
+    provideHttpClient(withFetch(), withInterceptors([headerInterceptor, errorsInterceptor, loadingInterceptor])),
+    provideAnimations(), provideToastr(), importProvidersFrom(NgxSpinnerModule, TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })), provideStore()],
 };
